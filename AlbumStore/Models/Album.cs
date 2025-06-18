@@ -22,25 +22,13 @@ namespace AlbumStore.Models
 
         public override string ToString() => AlbumName;
 
-        /*public string ImagePath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Photo))
-                    return "/Resources/sneaker_placeholder.png";
-
-                return $"/Resources/{Photo}";
-            }
-        }*/
-
         public string ImagePath
         {
             get
             {
                 if (string.IsNullOrEmpty(Photo))
-                    return "/Images/sneaker_placeholder.png";
+                    return "/Images/album_placeholder.png";
 
-                // Формируем полный путь на основе директории выполнения
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string fullPath = Path.Combine(baseDirectory, "Images", Photo).Replace("\\", "/");
                 return fullPath;
