@@ -1,0 +1,365 @@
+﻿<Window x:Class="AlbumStore.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlbumStore" 
+        xmlns:views="clr-namespace:AlbumStore.Views"
+        xmlns:style="clr-namespace:AlbumStore.Helpers"
+        mc:Ignorable="d"
+        Title="Музыкальный Магазин" Height="800" Width="1500"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFFFFF"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResize"
+        Icon="/Resources/icon-music.ico">
+    <Window.Resources>
+        <style:BoolToStyleConverter x:Key="BoolToStyleConverter"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        
+        <!-- Основные цвета -->
+        <Color x:Key="PrimaryColor">#6a6ae2</Color>
+        <Color x:Key="AccentColor">#ADADF0</Color>
+        <Color x:Key="LightAccentColor">#D3D3FF</Color>
+        <Color x:Key="BackgroundColor">#F8F9FC</Color>
+        <Color x:Key="TextPrimaryColor">#2D2D2D</Color>
+        <Color x:Key="TextSecondaryColor">#FFFFFF</Color>
+
+        <!-- Кисти -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="LightAccentBrush" Color="{StaticResource LightAccentColor}"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+
+        <!-- Стиль для заголовка окна -->
+        <Style x:Key="WindowTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Стиль для кнопок в меню -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Margin" Value="10,4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderThickness="0"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border x:Name="indicator" 
+                                        Width="3" 
+                                        HorizontalAlignment="Left"
+                                        Background="Transparent"
+                                        CornerRadius="1.5"
+                                        Margin="0,8"/>
+
+                                <StackPanel Grid.Column="1" 
+                                          Orientation="Horizontal" 
+                                          Margin="15,0,0,0">
+                                    <TextBlock Text="{TemplateBinding Content}" 
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C0C0FF" TargetName="border"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentBrush}" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для выбранной кнопки в меню -->
+        <Style x:Key="SelectedMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MenuButtonStyle}">
+            <Setter Property="Background" Value="#a9a9ef"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderThickness="0"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border x:Name="indicator" 
+                                        Width="3" 
+                                        HorizontalAlignment="Left"
+                                        Background="{StaticResource TextSecondaryBrush}"
+                                        CornerRadius="1.5"
+                                        Margin="0,8"/>
+
+                                <StackPanel Grid.Column="1" 
+                                          Orientation="Horizontal" 
+                                          Margin="15,0,0,0">
+                                    <TextBlock Text="{TemplateBinding Content}" 
+                                               VerticalAlignment="Center"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#a9a9ef" TargetName="border"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для кнопок управления окном -->
+        <Style x:Key="WindowControlButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource LightAccentBrush}" TargetName="border"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="12" BorderThickness="1" BorderBrush="#E5E5E5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок окна и кнопки управления -->
+            <Grid x:Name="TitleBar" 
+                  Background="{StaticResource PrimaryBrush}" 
+                  Height="50"
+                  MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="🎵 Музыкальный Магазин" 
+                           Style="{StaticResource WindowTitleStyle}" 
+                           Margin="20,0,0,0"
+                           Opacity="0.95"/>
+
+                <StackPanel Grid.Column="1" 
+                          Orientation="Horizontal" 
+                          HorizontalAlignment="Right">
+                    <Button x:Name="btnMinimize" 
+                            Style="{StaticResource WindowControlButtonStyle}"
+                            Click="BtnMinimize_Click">
+                        <TextBlock Text="🗕" FontSize="14"/>
+                    </Button>
+                    <Button x:Name="btnMaximize" 
+                            Style="{StaticResource WindowControlButtonStyle}"
+                            Click="BtnMaximize_Click">
+                        <TextBlock Text="🗖" FontSize="14"/>
+                    </Button>
+                    <Button x:Name="btnClose" 
+                            Style="{StaticResource WindowControlButtonStyle}"
+                            Click="BtnClose_Click">
+                        <TextBlock Text="✕" FontSize="14"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Основное содержимое -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Левая панель меню -->
+                <Border Background="{StaticResource PrimaryBrush}" 
+                        CornerRadius="0,0,0,15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Информация о пользователе -->
+                        <Border Background="#ADADF0" 
+                                Margin="15,20" 
+                                CornerRadius="8" 
+                                Padding="15">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Width="40" Height="40">
+                                    <Ellipse.Fill>
+                                        <SolidColorBrush Color="White" Opacity="0.9"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Text="👤" 
+                                           FontSize="20" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding UserRoleText}"
+                                               Foreground="{StaticResource TextSecondaryBrush}" 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="Активно" 
+                                               Foreground="{StaticResource TextSecondaryBrush}" 
+                                               Opacity="0.7" 
+                                               FontSize="12"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Навигационные кнопки -->
+                        <StackPanel Grid.Row="1" Margin="10,20,10,0">
+                            <TextBlock Text="НАВИГАЦИЯ" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       Opacity="0.75" 
+                                       Margin="15,0,0,10" 
+                                       FontSize="12"
+                                       FontWeight="Medium"/>
+                            <Button x:Name="btnMusicStore" 
+                                    Content="🎵 Музыкальный Магазин" 
+                                     Style="{Binding IsMusicStoreActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}"
+                                    Command="{Binding NavigateMusicStoreCommand}"/>
+                            <Button x:Name="btnAlbums" 
+                                    Content="💿 Альбомы" 
+                                    Style="{Binding IsAlbumsActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateAlbumsCommand}" />
+                            <Button x:Name="btnSuppliers" 
+                                    Content="🏭 Поставщики" 
+                                    Style="{Binding IsSuppliersActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateSuppliersCommand}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <TextBlock Text="УПРАВЛЕНИЕ" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       Opacity="0.75" 
+                                       Margin="15,20,0,10" 
+                                       FontSize="12"
+                                       FontWeight="Medium"
+                                       Visibility="{Binding IsAdminOrSeller, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <Button x:Name="btnInvoices" 
+                                    Content="📄 Накладные" 
+                                    Style="{Binding IsInvoicesActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateInvoicesCommand}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <Button x:Name="btnOrders" 
+                                    Content="🛒 Заказы" 
+                                   Style="{Binding IsOrdersActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}"
+                                    Command="{Binding NavigateOrdersCommand}"
+                                    Visibility="{Binding IsAdminOrSeller, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <Button x:Name="btnAccounting" 
+                                    Content="📝 Журнал учёта" 
+                                    Style="{Binding IsJurnalUcetaActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateAccountingCommand}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <Button x:Name="btnReports" 
+                                    Content="📈 Отчеты" 
+                                    Style="{Binding IsReportsActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateReportsCommand}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </StackPanel>
+
+                        <!-- Админ панель внизу -->
+                        <StackPanel Grid.Row="2" Margin="10,0,10,20" VerticalAlignment="Bottom">
+                            <TextBlock Text="АДМИНИСТРИРОВАНИЕ" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       Opacity="0.75" 
+                                       Margin="15,0,0,10" 
+                                       FontSize="12"
+                                       FontWeight="Medium"
+                                       Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <Button x:Name="btnAdminPanel" 
+                                    Content="🛠️ Админ панель" 
+                                    Style="{Binding IsAdminPanelActive, Converter={StaticResource BoolToStyleConverter}, ConverterParameter='Active'}" 
+                                    Command="{Binding NavigateAdminPanelCommand}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Основная область контента -->
+                <Border Grid.Column="1" 
+                        Background="{StaticResource BackgroundBrush}" 
+                        CornerRadius="0,0,15,0">
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Заголовок и поиск -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="1" 
+                                    Background="#F2F2FF" 
+                                    CornerRadius="6" 
+                                    Padding="10,0" 
+                                    BorderThickness="1" 
+                                    BorderBrush="#E6E6FF">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions> 
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <!-- Область содержимого -->
+                        <ContentControl Grid.Row="1" 
+                                        Content="{Binding CurrentView}" 
+                                        Margin="0,20,0,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

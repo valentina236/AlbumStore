@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Interpretation</CalculationMode>
+  <Culture isNull="true" />
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="2">
+      <The_x0020_chemical_x0020_composition_x0020_of_x0020_the_x0020_Earth Ref="2" type="Stimulsoft.Report.Dictionary.StiExcelDatabase" isKey="true">
+        <Alias>The chemical composition of the Earth</Alias>
+        <Key />
+        <Name>The chemical composition of the Earth</Name>
+        <PathData>resource://The chemical composition of the Earth</PathData>
+      </The_x0020_chemical_x0020_composition_x0020_of_x0020_the_x0020_Earth>
+      <MS_x0020_SQL Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>MS SQL</Alias>
+        <ConnectionStringEncrypted>9BrLiU15Qv1qFb2YTQCx59Vw0cJFVJLtfwjtxE0cd2PEat0Jxhij3WdJJfBkHKR72XjBzdV6q4HhT+HM4Rg=</ConnectionStringEncrypted>
+        <Name>MS SQL</Name>
+      </MS_x0020_SQL>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <Weight Ref="4" type="DataTableSource" isKey="true">
+        <Alias>Weight</Alias>
+        <Columns isList="true" count="2">
+          <value>Percentages,System.String</value>
+          <value>Planets,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Key>c6cd9043a64d4354987f26e4374bef23</Key>
+        <Name>Weight</Name>
+        <NameInSource>The chemical composition of the Earth.Weight</NameInSource>
+      </Weight>
+      <ИсточникДанных1 Ref="5" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>ИсточникДанных1</Alias>
+        <Columns isList="true" count="2">
+          <value>MonthName,System.String</value>
+          <value>ORIGINAL,total_revenue,total_revenue,total_revenue,System.Decimal,_x0035_e63969606824e95b16addb817d3125d</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Key>50140bf1d2094ecbb03e607f6ff59f1d</Key>
+        <Name>ИсточникДанных1</Name>
+        <NameInSource>MS SQL</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SET LANGUAGE Russian;
+
+SELECT 
+	DATENAME(MONTH, date_of_sale) AS MonthName,
+	SUM(number_of_albums * unit_price) AS total_revenue
+	FROM 
+	ViewAlbumChek
+	GROUP BY 
+	DATENAME(MONTH, date_of_sale), MONTH(date_of_sale)
+ORDER BY 
+    MONTH(date_of_sale);</SqlCommand>
+      </ИсточникДанных1>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="1">
+      <value>Name=The_x0020_chemical_x0020_composition_x0020_of_x0020_the_x0020_Earth, Alias=The_x0020_chemical_x0020_composition_x0020_of_x0020_the_x0020_Earth, Type=Excel, Content=_x0032_gdpdMjPY4sL5FyWygD6wEA79Ix5sSUk8Ztyodba6LscHDyv294dfMOae1Z_x002F_WHCF_x002B_J3ZuuRSMntEl7co_x002B_z6BBvX60fmkREnCZ8_x002B_0U4H9lyegF_x002F_qFdqEYy_x002F_g1MLyCnQ26vkXOmwRHlHjAhOStLPEPGrB_x002B_r9g7chHhZulKQNdjTohQnw_x002B_UBrZrQvW96_x002F_cJ3USTt1S9eVG4MNa3RphhMlPE5JOzaMsSRecLp7Zlqqxad_x002F_BLvd9NzBnZo7gZVkabsKAEN9ygPVJtAKNbUfM3UIIdsJPitY2_x002F__x002F_IImPOOswqQPcjNvzEGNxUWDdOrbppRqZ3rlxf3TIXQoTfvFRUDv31Ix_x002B_sX8rgvuYoFSWhdb0odmg6qcGOBDR5c_x002F_SHED_x002B_ozo2yZd8nP3qJYzc4FdYpKTTDkmUEnET5_x002F_Vm_x002B_cBiNEqAumPysVpN4Pab4TdmLTpQIyRfZiBcaHmGR_x002F_bKK0AZAOhOebVO7dV0QFM4L5_x002B_48hbgifUDr1_x002B_tzTPng4LvBQkuZ1SBurpIpUzyz36Ozvl7wdMvZfWcxe60o3Q9yWaIazTOSy5LziAmW5kYt0QLIQfYYAv7lHBA6uGt4Q0PK3JGVysbnZ42XCoDp77ZgTrhcOB1SG5_x002B_WdINu4X0aCG9K9qr5XH6xbHxUG5TmH3rOeF1pja7JmpxZfTNkDrZOl8DFIXHhv9bTY_x002B_U40IR4Po2OsNgAjbwsi3xKpEDV6HHPwf4H_x002B_WT27IG2Q27dyF361vuQAT32wp8AM74C8K9XlGU76QlUzhWJWt_x002B_mIkI9AhOQG_x002F_9wgEnOwk5aUyEiim0ib8nJBsWadrNXaS9YZXauoPQsmK5FsoCGw4NpUqvcmICkkZPSEEtqUkHoT_x002B_VhWY6yh2kYjsiQvqfKxYdLq73MSM_x002F_6UeU_x002F_s76keTcHOYADW1IVjuCPtebEi7JGimn2bBc3Pe2X8z9AtRfK2Uo2WJUf3UJrUlO1ZIBVbBFltogRqQRbO46a0uYVU5M1T9HgUYZ0GD34dTZuBYRNgH_x002B_nfwY8aadb4AgfQG46MPbTO0rpNKdkqb8I2NNlMg4W_x002F_jkOocf6ujsCsOO3ngQXIV3xkNimau_x002B_XjWGiFV3F6t3bXJKp1ipepukZhxkY0RIN1vAYtqpldLH65nIWWc5abUj3gdXtRWBVcddkZj4t2yXuBuzxmYZZCvz0roF_x002B_4Vj4arjg5M51UjpkbGPi18QlqnFO1TYXowLfhpaV6hfIQ4rBK5_x002B_wzxdfWvw1lncv_x002F_sbhA_x002F_0911JZyK1UVcZAGyOiieXoBVXs4zExUftEdua1yPb3wvwhVcprs7n1fuZhku46Ba28rNUxS_x002B_Dw6cbW4ydAxLM2eO2fFLzp_x002B_Qj3wZJVqHviuj2JuQITUZdetnI1Vx8ZWUmuT_x002B_W7eCP4BgjHkjK6bbJUofzkUq2eW2uG_x002F_5qKb0Ur0MbY_x002B_kr5h5XT0PHbUbJ0MlnUGs6tm7IdxpBCuggFbUuu84UQxj2IPoqk335O7m5j2b6znYSrsscMOqyZwiB8NfPEJj_x002B_0_x002F_eXfn4Drvd_x002F_q0I4asuy8XxlG_x002B_l4FruhOlpdIU9vhB6345ZwAw0uKo3zJ3dK2LP_x002B_0fTvnws6x_x002F_KLQpxTJFd4FX5tlGu9lW4TUEYyhmG6Vdq53IxbttJCm5325imS43btYkY2bBUc3psHKzrbaqdTaoR4byQgbeT29fh_x002B_ZifEgOUrw3tbiBfl_x002B_ArUTb6lAWJeh5SmoMZBT532A1rH37YSIZqZTwblJo43Js5vYRvGMSt1k1uMtLjRT8fpGjtM4D8Xa2F8n3ek5Fg1NA7OZDL6632aW485gBo1USCvNa788eftN8GwV8IRdHHROq8bq9u3lmGcwLNwufOWPrLvG75FftEjXhU3Xl_x002B_50UZUCAYJyBhPBT4KLRWwiwpQmR9ZR409UaCotSAA9Y3kUdig2Y7kOPYmOkXzsZbuMQV2jZZ3eeqSKuWj7cybB0vfFpCiNIIfdCe5HJX_x002F_FGu1EECG1bMxM1cOfN3u_x002B_Ltd8tMfCfIpFKZr0KNqZvErIY4yepxqDXPedJsLguXXQIRQvcGPtId8yHPCST2tMLgjpYFuPJs1eGEt9m6Qgi4LW_x002F_NXa6AxQpcdYWvxoYidDOMznlDmUlGZpbMd7pn3VnQBuz7FFCRQxoo4P3QjbDxqWd1fYCxt0f43p6heGbMmz8kmBSC7cEX0hLNqzPhk1brhtLtuLjugoAabtbT9M1of2SIr7IaoGNDsULVotJ88_x002F_k9Ad9AJyMwfQhAfqyCeuBZqMDvcrgtQdSAZNHz_x002F_J_x002B_N_x002F_IxNzE8bH3Xk9koyx7HNvN_x002F_46QO5RPHBczPu5hnqLZhr7lVgZMgFvqH9sD_x002B_zlUPeJGJ2S_x002B__x002B_kAUu2O9YifjrJjFHUmpqcwORSrDnCEcWlqOlVINR2m1NoFtWBf5NVK2rzltABBVFmoWTIjOqM1HeCug3Zm_x002B_aT57vJRaIQIqNdqFEHWnkPL3jx1M8XpUZz2dTbppCsBFrlNfa4Wvj6_x002B_rZjkmC7B7BmRc2RagYMMnJs3nPB_x002F__x002B_sR1DTQhjgodYjxC6NnSto2EV_x002B_zZx8nUo6Q_x002F_EGPImiY0AJu66bRAB5fEe_x002B_qHCTW7Y3gs00znSScltilWViaqPcj_x002F_Kb4c0nnLACXPIBFDTMGwVjva17orTvxKSk00kMKdiE0HUSGFwUQVvugxT2sc75VLuemUwL4hML7WEfn5QOsu3tP_x002F_7Uzbq94kHMLIClRHsoWfrKRULK5wWXWMEN8ncMkZozT2pdqNt_x002B_CuH4RNct_x002B_XmJd4O50ZuKaxVIcnaKCi4K2l5gOQf82qLZcgJvDI1XaghMoXcUrp93kENqGnTQlu9vUsUhOTQlHO4rxRvZR1XEppM9qB1stFIqM11VpOE3PmUuIdS_x002F_jsDDuA_x002B_Zv8XMhP4b4qV2PfJ91XcBSllG9_x002F_zQsCJkRZsmZgk_x002B_rNhjgKhCtvQke_x002F_XNJ6fqp0U2kyTWSMfOXrIvB9FgNGCSBg7kzyQdQOu09yKVb6nfFzTW7MZAK4PdPoKXvu_x002B_aZuhV_x002F_WozSke6WBbva_x002B_T8y02aswmFZh7n_x002B_38EzFWnWFgwY3E3qsAgCFrFWsAxoPfcV78K_x002F_sT3i7i9Zs6bKB9mKi4uLFLNfmy908hXtwol51PsWIBmCO4e_x002F_DGXk1DrHiIBcQIb9_x002F_v_x002F_0HsKxqeoMBzxIC48y_x002F_y_x002F_hBU7D_x002B__x002F_0xJC6k8gaS4FiOIuUPZ7zhC9uxhn5sJagAOE1jhPFvr8Vo3bo7WEy7FgQEAaaRdciBBOijrEzSEIFa1vT0gqStWtR7aOp7fm4Iszdz1_x002B__x002F_H4NNTjfnpsQeVZZxV7fpMqJzpUN5khGZ0tWpW_x002B_kMeLbNBdHExbFrC_x002F_uBiSeSJxXwgUYTi4JHhSnM563YcPyhLxxFx_x002F_BXDntfCmtWqMV_x002B_1GgbtQ7v9867XWzeC6rPIKW01Z09UeylUJeUUhUh6o7wOPuxHJipqjK0rNpDF41zCiuxmrFHCpiSQKuBl1gXFpiPCXUGUyoQNV7KdC2Xq85Pd6ICMJCy9oz2v4VCFeYVB_x002B_EOV47u88eQtibp7jRx78gCfve1ClzLPV5vwoJMFWSqm5gJIGK4B1Zc84A8HXQwTsxPJaIY_x002F__x002B_4B4Nut_x002B_nEUGtwMMP7sXBxSoOY9WrKlSShNIEgs7h1Ac5nMKKvYT_x002F_7DqrNpnSsLwHWnO8rJszeagjXDJWtUbKOI9Z3kl2sXtRZrBU44jkuR2I_x002F_nW6DtLAL2LgDY_x002F_DBoX2TWvfYbFJAd2IYenZx6IAchvXnNJq_x002B_nxZhjWzpsJj7_x002B_mGGgSj9z_x002B_Nng_x002B_nDQXNa5Hjr_x002F_TFjNjcrhy8EbYifHwCaDLakJTMsoOQlOMIN7cn0tfJPcoQmTfeLMKkMBRasVvluIuYvLiV_x002F_IlpHmthCh7FBw6d8W0e2_x002B_KeDrxR2xS7rfL9QTk3y8QIpQVaqCU2jWQEGxWN6uzF54TBttIIEt_x002B_M4ZlPstLCkAdSvY_x002B_taHlo5S1RJMKLNwey_x002B_znIi3UVT2eLPfblrnuCDKMTkmnBmfrEKaWRcLnAyWtbyMJB1cnHmggolLMbQ_x002F_Bzpd5fTrMl92ZbcATI2_x002F_6XekykxfwoKgHPmULgohk3PWpHXpJg2m4Y0sAVG_x002F_v0YVVi4tO0SB_x002B_MtO0g689SFMykUKrNeNs_x002F__x002F_n_x002B_F8m5qi_x002F_5Vlle1B5xfzxJf0qxZzAzH2RoBbMA34u2tDhIinStnHMifehgtiNfgZiP9BcUrMhAvUBpjPAJozrJR9CqF_x002B_5Re9qIxNLMkPU6RUnNQtmhIcLVWLvz4GGrigXsAfI5oWbWJ1d9C3_x002B_gNSdukYyXQzEVoxNdVv2FKtPCdT7_x002B_vm6HlY44FeKIWoEAyFeQESjwk8a6MJQLek_x002F_bQ_x002B_1vZ6LhQHkCW8vNQhmg4eV_x002B_yYSSymqViUdXJO8pNZop_x002B_ovsgescHs4_x002B_UrfJu8V_x002B_uOoBojEU3zqJ0ZlydC6oHbtfaEv_x002F_G7KyaZqFm1gi9qgpxkFN_x002B_C7TbhT_x002B_7vF5q9LWNrFMPoFSDGdIX7Ocfw41DMIwThX3tC9TSlV6h9bk_x002B_AxRC6OtBaBOgi6G3yJodO45_x002F_aj_x002B_zBmrQBa5qm8dZTMm8iLrnn_x002B_XbZ7Sw_x002B_U4CLsTfs92aAGHRltlkDJ8ERKjvmbHUvWtXOBhgzIuv7tSYED2Rfpgy7noT9_x002B_KARCmly6aG_x002B_IN8QFJysr2ZKI71XjMXg23V5tmkYeyfHP_x002B_8b_x002F_cqhsPDT6v7JCB7LMYcs3PPS5e1_x002B_Z_x002B_CZhHbFlvURas6o_x002B_HUOGQKDajKsQisgbZkTzgK7GAtjjsFaFvvWeomWCuBENLl_x002B_bzhsGB5yRUp_x002F_HRH_x002F_0GNCyJrNBZ5VTlEXfMTFe59xYt3ji1Hs4ZcwGG9oaPuIsqAOzZBrbkkFVSdsLTU_x002B_a9lbq_x002F_rCwXt7OBkikLv2JlMH61tsJBTf51TjsrejPUn45zewPwbCh2urG7NZ10NKI_x002B_b0uJubizMcrqeYm3DpoX8NUr_x002F_HD9ofeQLfymypVh2i2fDdOXn_x002F_m_x002F_LUE_x002B_cwgQB89IbKFGZafjUyBoQ41TrR_x002F__x002B_k0oFtsJ1HpGW92JOYuKpSWv1WA4qKtfIKpD_x002F_s_x002B_tAyQ4710_x002B_kqxyn19WxIYhxaITiJhHBzIbbSc_x002B_OEYhRF2HydZ_x002F_vqeU5_x002F_OeKepaiYcMa2r7i9VZZU_x002B_F816ZAxteGud5OS192qGlV5W5HHbK4oOPJrBvilGASxPLeCkgsdZAdajfNd38XaIPKSsd0ooHVMqNpgRPMDDwXwpEju0bdu0KVtxKqDykH6urfksnTEGO_x002F_soKVjM2A8ntRh0BgP9NdoJNvWv1UQEgL_x002F_GrdZr7eI2DyjMBNJ20zJtS59vN1CEjSW1TsrKA03RG2G1NUgm_x002F_a_x002B_LJUIfdH_x002B_Hob32DkmrFE36l2Mrsxheur6VN4FgiKBKhl1IKOTm8AZ_x002B_KVtQwqM1WR3LQDIHaV0ohORIjv8EgF7CoYNmADekJgii09A9irOAufEFqe5lyCrsvNKGnQEal1IVFSaErPIIlM_x002F_hXaYq2thPjR2mRo3VB1DfB_x002B_zM3gyJFkEpw2FG3jdosrnNyvg4ILGuHXbAEKK2g4Pow4cDsKirf3_x002F_DEF3O309dOcYcCNKvYbxjEVqHumLB6Wpn_x002B_MikvomypD_x002F_0w0TdkfMPiCdomyhIpu3WYLKMabiaNt8TkCmNkobi8e_x002B_gaLWowfU2OSMc9m1s4smr7fC8pLfzNcWgJWvDa_x002B_q77tu1C4Ds1RrnDcM_x002B_KnHyWO0Ql1NJGBZcqprtMLEWymT43yI_x002F_m17s97jDp2Gn_x002B_P5IFY20cGBnFmYarzldSgWMwi5_x002F_lDSq_x002F_WEvVVuUzlT7bSMum3OqiGxcgEKdrpLAy1F02lfplonkTYFNmJWYe31NwQ6ta5Kh2n2dz9Tsfbljxck5JxkCkIrSUdu9bELlgMujxDeVYDDR52GrAPICb9CHz2XG549_x002F_epewN_x002B_1LCPbQ9tbe2NdNr4_x002B_FhJexvbFL4N3dC7x6jSUKR4vWrwOYhXktT8W6_x002B_6CsgBpqEBJbyXzDHgIOS7bjh45lu2Un0GXvc3sPs0ZylxFYwtfYbJX1nnYDoJIstj1Ndl5jGz02AkD6UMuXHbDFtD5ktpFjMbPNTp4L9i0rghzsfp4RKc5pJaMPZyvA_x002F_yMX_x002F_ZlnJec1p6kER7GyUQkSx13QTB4Uy1owsDu_x002F_TUfxpOIvwax3GVjCO6k_x002F_eFTHzQp_x002B_hGB60VumSb_x002F_YCGMaOKscvudSopKECAX7OQwRwrGI1QEajZnMx8GWi2KzhCX5YNd4ppyop_x002B_Xfo0t3ebdoKVunCSNdJwNKCkzjYVfqQG0GuZgzl6lyQt_x002F_UpFNZayK_x002F_nWeDqlpV7qB5Cu8yKdwr3ElaRv2qRTjqfC9RDfRVuMhJkEkDoo02UgtmVhA6H3bU_x002F_ZPTwizDU9z6wpfK6I7mAy7cik7En5Ye8kEJHVFAxPd_x002F_WDz399Pehx2LDUO6M0XEteJ8lOOMUv3anHxonSBGp0gn0S_x002B_rc1iRHG8z9ZIKf_x002F_XcHEbjbStaznvnRplB6_x002F_0GNQCJNYcVD_x002B_dKXcNtIZR71AIWcAED1qYQELVf4NfjJIFJ1fPhjEceniWqMwRIqaqDtilHKVVfLYJIRl_x002B_AlO3yyfzUeWUMwwUkylrRM7gGBEi5GaGl37KRfGeAasYVXePz09H6Z00qtjfNMHoM0gTXXhZ2uVxqS_x002F_ap7fYnKXYkh1xR2wzjNwSRycRTq4Tk_x002B_pHjhzEdeHyIhggb6dLVdgUid2HzpTREdBIcw8A_x002F_pFxiJis8x9kWdgVEwRCpMrPWn2Kqri7WVCGbgVYuTQomK5ZlbExlIweo_x002F_vTsPv9pJJcf4q_x002B_vjkPBMGLCgyq1dSUOeSqQvUZWCTLUPd4RSNSeoq6OzrZRq_x002B_Hgo_x002F_l56cKkBKLGC5KicKNbSaidQZXPVa0D17_x002F_lySshyUJ6xC9_x002B_EBtDmcRhDJa92Ei65ZUbFH6_x002F_N6V5FIOgKDw9n86dp3uHP6YxU7ekkcbZPmrUgCmHufgPX_x002F__x002B_tODN7yQ9M8r8fQ30ue77mbu1FspKEcCQlfY8rXzd4zg9fXStkECga5dyDaE1gd4R3_x002F_gybn4BXmP632KBFkpXqAZy25hSXPsOTgngvpb43su0BtY1PAKifUX7VO1EEdD9V4w6GExe9P_x002B_IqR_x002B_ttdh6rYMeyv2QMAlY8SkISbbKOwpUZPlyNtmuWOBqXe2ygXqLzgZMULkqA6E1s4nhxNijRcDPtRbnD_x002B_HJFeZHcWF0ToEvVrBTeoDcumC12wRX0cHeMYDCdDdJzXZA3nf9A8ZKXYoOegoi72F8hweXy7VkZdtMBLv7OuTkSvEokD6khptHsSsR2YYFd2bKLCE_x002B_WC2XgcgHFMwG8Nu9bJpIJfss1Gc86u_x002B_FTkE4R6fPFrf0ZCBJUN7pmpEVIF_x002B_cgM56dPYXR29keQSyB4x3xvEE0OEJizKNh01bg22NTu8Idr9QgKVyAyRdJx5ATVXc2Bo0tMEKVtxuVTUx51BZKLvCNQavxX_x002B_dZB_x002B_tHy1tHsUdqy7mcX08h_x002F_zXUHsUxagDOuks2jpfmUUmi6tMPDFNCeGWxIegcZjHUc6RpYAZhlV7bi6b5fgj4ZMH3DO1gvlkl8yLIczuDoZhjbqziNMSayAWErvtvl96mAmQqVklkBTtTNjrltILzF1EIYYxZ_x002B_G8MD7NqYvvZKDFdZut2kV_x002B_cZkPthlolfhJcjPGlCVafWN1Kous02SzU5Vx4D4o6oSpMAxeprfqN3naTlq53ChfZGRK_x002B__x002B_AJN3PAFIiI4KDeqw_x002F__x002F_cvu20o6cgI4RxTiJNntpJi39C3jLA8fX6mDZQBNWmGD_x002F_WF2d_x002F_2Ekw_x002B_kPLwiJqeSWGb3X3nYEDWz1rm1Kj8nZcakldEkQR1YNS5HvYXFhFkgI27lf5T_x002B_wzMfUpp_x002B_E9m2RdzC4O9dCDXU_x002F_3uDzPHRjT_x002B_pZ1aDkIIPIMJNov5zI9PfqyEGqonxK8xe9Er2gTVE_x002F_s_x002B_gXFHNLU_x002F_BNSGxzsSfbdmjWwYq45CgIotiWHAi_x002F_XFqONWtGHqkuKUmD6arwBQS2hvx2aFANv8Swd6SoM0Los28mNm_x002B_LkTtnlPpiSMZEgcbJwIh_x002F_3y9FgxniF4KAAuh9Ivl911MxSbafaEH1CSBmZ48EZLtXbFQAifPl0N2xzgtsr3hCpRQqWW9dbHb0PtSzM7iaiJaJ09DZNJ_x002B_8obaf_x002B_bg5DoKNGIrk5FzHjQGounEVj64TiKQQ2rojbU5iGxo9bH6JRgy1iSK_x002F_Lj3rWgnMfYtnQFRHp3fZNN4gshVTnJo1W9n3ItBjr7df_x002B_hEspI_x002F_mp8JuKOfTp_x002B_3BHdMgbHlYSFTEnVko4iFcvezzSiHHjAy1BZtCvgNs6P0Rss_x002F_DHqSPPhvGnOy_x002B_QuVX8Fwhx7WL5gCQBcKkLE_x002B_BeMZEtXkcR33B2bPBKO2cYYeXd0vP1j7yTEqELE8Nl44jtAdHoAZFwDE32_x002F_SxUtYq9BoMYwwmvi7MO2vgaxIeP_x002F_Ky029A_x002B_WEO8viKeatHrqM44X3Ng7sCGvuPRqs3ADfDYtrqmcEgfLilNcRsunKVbsFA0siK0E2Ak_x002F_kp77xTnBcanUlypLKKpsWL_x002F_x_x002B_VmndcM8ChzzSTej5_x002F_6Fb3byDALrDgWtKqIje1HrQhJgmT7eQWHCoiovtfIqj_x002F_WTNkXXck_x002B_zaKOSuGeYm3IPWgDr4xHZOqlY22VVz9yikFC0tdAADVA_x002B_NCCe_x002B_GDASqn_x002B_zwASdR22XdfCe8N7TguwCmv9iggUtHZj003N9_x002F_LBcNjfyJTRG1YFlvV_x002B_qcXyckJW2LBl_x002F_B_x002B_7gwj0S_x002B__x002B_DIxnD8EDJn8wpJxYhdcMx2kBNgjgsMEmbqL0_x002F_4IuuW6DL_x002F_4EtoQTfKSJuaAGCePuCiMPkJLoMK703M6Knkl62eeQbTT4vo4mg_x002B_1Xm3VksKQgvgnRLvKQtnXb3jCzhER8FL2T4wOGKzIQrSnVfAb09PRCWYiZzUwXnLiB6wQdLdrTKjgrVQalIIag5FyNqGQp02q310Hu6R_x002B_BUwjuDbz3F2rpVzQvuMKNwvzD0H5wtMA9RjNFA6UgXB3NVGsoEQ9mAqkryTg01eHHFhR8oMSV7fgEYZKB2syhrLlaVdqsBOyZLAiFEF7_x002B_nbT5Oqo0akDrtJsbnhOa2BPvDwZADPMQtWRROQczeEmJCJyMA5rdlhsPLEJlMv9QXCKCeWUCIrtKzpBhnlEPgwPjpUSnIxwFZvJ2Kie25A3gb6l0NJL1wRIvygL47KWSyJ79Yw6L3nGK8sKOPN7CayLqyLT8O1Uf0kj1qz_x002B_sTxEAqUaXAFBCp93X8205YgrCkjial4Tk2Iae_x002B_i_x002B_grFTIIEZTTb7WVvxVgsJ72JhP1035NyOlauzuGwoYdVxKyvwKAdFMxQ48pICzIoZrvTv0STvtiuKYZhe6kiu6nHbvroBxkXNNjAjJigMgMLmX4wvW8u149bg2NYgGuLWGnN9HPPVZw6VCfmm_x002F_Rj9YZOwRa1XGb1NlLmRYv0G5ZCLmmDV1LT6hPu976bR9n1rodgR4MPdgiMGkc2JGKtYl3qsOhKM74SHilb0FVA5dl8WaZEcO35mXRopTF63clxVAJxug213OOijwMbh48qJGiUs9hVbxwGu6UP0h_x002B_vVGvG8jLSO4nxQ_x002F_3nRmg4ooyI3Yckga2nAxOLaZrdmtq9rGHYxyKwxGioit1VCplqXKC7m7A1ddONpPu61qCCkBuLHSKUlI_x002F_m6WPnJAoM8H71nklEqwrfWN7uUbBU933TPOdQksHQFFIqCeharOfTHklgVtVOVB8m7gEjLvoKBeDUOYFVvUe_x002F_5o4TK6V13DyE_x002F_xcLbhZTtuPVtj8uikvct_x002F_4hQlNVNf_x002F_XJPvjuMPUJHMz4WoN1YAOz_x002F_wQnN5KvxzkgHPJQZ0xEbfxOQf5BgnbzHUtp7fX6KdF_x002F_DScyjMlCm2_x002F_kO6nRDCO2pTpJMIe6gVmvDMfeQYqrpdrVAzd28H97SdiuvHXxgmoyVuWH8p1tQeQbonPJDHjbEs5jTJ7jr2EzlH_x002F_e1Vs63GxOtrngu4FnHoY1ikKj8hY5yc_x003D_</value>
+    </Resources>
+    <UserFunctions isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <Key>f4a6d6f163a9429cab01533acd5b1952</Key>
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="3">
+        <PageFooterBand1 Ref="7" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,1071,749,20</ClientRectangle>
+          <Components isList="true" count="1">
+            <Text6 Ref="8" type="Text" isKey="true">
+              <Border>None;[58:78:94];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,749,20</ClientRectangle>
+              <ComponentStyle>Footer1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Segoe UI,9.75</Font>
+              <Guid>7008f25734c641b29610ec2794f02361</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>3,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{PageNofM}</Text>
+              <TextBrush>[158:158:158]</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>7b3c3f12c617432ebc86ffd7fb2d6a65</Guid>
+          <Name>PageFooterBand1</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </PageFooterBand1>
+        <SalesForMonths Ref="9" type="Stimulsoft.Report.Chart.StiChart" isKey="true">
+          <Area Ref="10" type="Stimulsoft.Report.Chart.StiClusteredColumnArea3D" isKey="true">
+            <BorderColor>83, 94, 102</BorderColor>
+            <BorderThickness>1</BorderThickness>
+            <Brush>[242:245:252]</Brush>
+            <Chart isRef="9" />
+            <XAxis Ref="11" type="Stimulsoft.Report.Chart.StiXAxis3D" isKey="true">
+              <Area isRef="10" />
+              <Labels Ref="12" type="Stimulsoft.Report.Chart.StiAxisLabels3D" isKey="true">
+                <Color>140, 140, 140</Color>
+                <Font>Tahoma,12,Bold</Font>
+              </Labels>
+              <LineColor>233, 244, 252</LineColor>
+            </XAxis>
+            <YAxis Ref="13" type="Stimulsoft.Report.Chart.StiYAxis3D" isKey="true">
+              <Area isRef="10" />
+              <Labels Ref="14" type="Stimulsoft.Report.Chart.StiAxisLabels3D" isKey="true">
+                <Color>140, 140, 140</Color>
+                <Font>Tahoma,10</Font>
+              </Labels>
+              <LineColor>233, 244, 252</LineColor>
+              <Title Ref="15" type="Stimulsoft.Report.Chart.StiAxisTitle3D" isKey="true">
+                <Color>140, 140, 140</Color>
+                <Direction>BottomToTop</Direction>
+                <Font>Tahoma,12,Bold</Font>
+              </Title>
+            </YAxis>
+          </Area>
+          <Border>None;[0:0:0];1;Solid;False;4;[0:0:0]</Border>
+          <Brush>[242:245:252]</Brush>
+          <ClientRectangle>0,110,750,550</ClientRectangle>
+          <Conditions isList="true" count="0" />
+          <ConstantLines isList="true" count="0" />
+          <CustomStyleName>Chart</CustomStyleName>
+          <DataRelationName isNull="true" />
+          <DataSourceName>ИсточникДанных1</DataSourceName>
+          <EditorType>Simple</EditorType>
+          <Expressions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Legend Ref="16" type="Stimulsoft.Report.Chart.StiLegend" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <Brush>Transparent</Brush>
+            <Chart isRef="9" />
+            <Columns>1</Columns>
+            <Font>Arial,9</Font>
+            <HorSpacing>10</HorSpacing>
+            <LabelsColor>140, 140, 140</LabelsColor>
+            <MarkerSize>15, 15</MarkerSize>
+            <ShowShadow>False</ShowShadow>
+            <TitleColor>233, 244, 252</TitleColor>
+            <TitleFont>Arial,14,Bold</TitleFont>
+            <VertAlignment>TopOutside</VertAlignment>
+            <Visible>False</Visible>
+          </Legend>
+          <Name>SalesForMonths</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Series isList="true" count="1">
+            <Item9 Ref="17" type="Stimulsoft.Report.Chart.StiClusteredColumnSeries3D" isKey="true">
+              <ArgumentDataColumn>ИсточникДанных1.MonthName</ArgumentDataColumn>
+              <BorderColor>Transparent</BorderColor>
+              <Chart isRef="9" />
+              <Color>64, 86, 141</Color>
+              <Conditions isList="true" count="0" />
+              <Filters isList="true" count="0" />
+              <SeriesLabels Ref="18" type="Stimulsoft.Report.Chart.StiOutsideAxisLabels3D" isKey="true">
+                <BorderColor>Transparent</BorderColor>
+                <Brush>[119:255:255:255]</Brush>
+                <Chart isRef="9" />
+                <Font>Arial,10</Font>
+                <LabelColor>83, 94, 102</LabelColor>
+                <MarkerSize>8, 6</MarkerSize>
+                <ValueTypeSeparator>-</ValueTypeSeparator>
+                <Width>0</Width>
+              </SeriesLabels>
+              <ShowShadow>False</ShowShadow>
+              <Title>Ряд 1</Title>
+              <TrendLines isList="true" count="0" />
+              <ValueDataColumn>ИсточникДанных1.total_revenue</ValueDataColumn>
+            </Item9>
+          </Series>
+          <SeriesLabels Ref="19" type="Stimulsoft.Report.Chart.StiOutsideAxisLabels3D" isKey="true">
+            <BorderColor>Transparent</BorderColor>
+            <Brush>[119:255:255:255]</Brush>
+            <Chart isRef="9" />
+            <Font>Arial,10</Font>
+            <LabelColor>83, 94, 102</LabelColor>
+            <MarkerSize>8, 6</MarkerSize>
+            <ValueTypeSeparator>-</ValueTypeSeparator>
+            <Width>0</Width>
+          </SeriesLabels>
+          <SeriesLabelsConditions isList="true" count="0" />
+          <Sort isList="true" count="0" />
+          <Strips isList="true" count="0" />
+          <Style Ref="20" type="Stimulsoft.Report.Chart.StiStyle33" isKey="true">
+            <Conditions isList="true" count="0" />
+            <Name />
+          </Style>
+          <Table Ref="21" type="Stimulsoft.Report.Chart.StiChartTable" isKey="true">
+            <DataCells Ref="22" type="Stimulsoft.Report.Chart.StiChartTableDataCells" isKey="true">
+              <Font>Bookman Old Style,16,Bold</Font>
+              <TextColor>140, 140, 140</TextColor>
+            </DataCells>
+            <GridLineColor>Transparent</GridLineColor>
+          </Table>
+        </SalesForMonths>
+        <ReportTitleBand2 Ref="23" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,20,749,50</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text20 Ref="24" type="Text" isKey="true">
+              <Border>Bottom;[158:158:158];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>570,0,179,43</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Segoe UI,12,Bold</Font>
+              <Guid>821f1dda78a34eb0a90a214cc7dd1feb</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>3,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="6" />
+              <Parent isRef="23" />
+              <Text>{Time}</Text>
+              <TextBrush>[112:48:160]</TextBrush>
+              <TextFormat Ref="25" type="DateFormat" isKey="true">
+                <StringFormat>g</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text23 Ref="26" type="Text" isKey="true">
+              <Border>Bottom;[158:158:158];1;Solid;False;4;[0:0:0]</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,570,40</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Segoe UI,22,Bold</Font>
+              <Guid>4e8efa876f794beaa14d74d271717439</Guid>
+              <Margins>3,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="6" />
+              <Parent isRef="23" />
+              <Text>Выручка по месяцам</Text>
+              <TextBrush>[112:48:160]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Expressions isList="true" count="0" />
+          <Guid>0e923adf1f7d4bdb938822b2b3d1eebd</Guid>
+          <Name>ReportTitleBand2</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </ReportTitleBand2>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Expressions isList="true" count="0" />
+      <Guid>ca796b33cc8043b9a8ff9e61c89afaf3</Guid>
+      <Margins>39,39,39,39</Margins>
+      <Name>Page1</Name>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="27" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>The chemical composition of the Earth</ReportAlias>
+  <ReportAuthor>Stimulsoft</ReportAuthor>
+  <ReportChanged>5/20/2025 8:20:15 PM</ReportChanged>
+  <ReportCreated>1/19/2012 7:27:11 PM</ReportCreated>
+  <ReportDescription>This report shows the chemical composition of the Earth.</ReportDescription>
+  <ReportFile>C:\Users\valen\Downloads\SalesMonths.mrt</ReportFile>
+  <ReportGuid>869730f75d574419a4bb6a51e093a76c</ReportGuid>
+  <ReportImage>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
+IZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIg
+QQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQ
+SBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAg
+BBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgk
+CIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQSBACCUIgQQgkCIEEIZAgBBKEQIIQTrSg
+7Xk2eM0s/r3a6b0YcKIFraqqxmSmrbCtnUYaVkT/Xpq/iHKyBbkOyxhO28hMwnwayo5qWPxFlJMt
+yIGy+9hptO9bIGowrzrOFn8R5UQLMmVY8e29x1taE7ZN2NFkGfiLKCdaUMBK7KgcgwQhkCAEEoRA
+ghBIEAIJQiBBCCQIgQQhkCAEEoRAghD+H6FJr9e9oEsZAAAAAElFTkSuQmCC</ReportImage>
+  <ReportName>The chemical composition of the Earth</ReportName>
+  <ReportUnit>HundredthsOfInch</ReportUnit>
+  <ReportVersion>2025.2.3.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Sales_Analysis : Stimulsoft.Report.StiReport
+    {
+        public Sales_Analysis()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="3">
+    <Header1 Ref="28" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>Bottom;[158:158:158];1;Solid;False;4;[0:0:0]</Border>
+      <Brush>Transparent</Brush>
+      <Conditions isList="true" count="0" />
+      <Font>Segoe UI,22,Bold</Font>
+      <HorAlignment>Center</HorAlignment>
+      <Name>Header1</Name>
+      <NegativeTextBrush>[255:0:0]</NegativeTextBrush>
+      <TextBrush>[104:163:255]</TextBrush>
+      <VertAlignment>Center</VertAlignment>
+    </Header1>
+    <Chart Ref="29" type="Stimulsoft.Report.StiChartStyle" isKey="true">
+      <AxisLabelsColor>Black</AxisLabelsColor>
+      <AxisLineColor>140, 140, 140</AxisLineColor>
+      <AxisTitleColor>Black</AxisTitleColor>
+      <BasicStyleColor>WhiteSmoke</BasicStyleColor>
+      <Border>None;Transparent;1;Solid;False;4;[0:0:0]</Border>
+      <Brush>Transparent</Brush>
+      <ChartAreaBorderColor>Transparent</ChartAreaBorderColor>
+      <ChartAreaBrush>Transparent</ChartAreaBrush>
+      <Conditions isList="true" count="0" />
+      <Font>Arial,13</Font>
+      <GridLinesHorColor>Transparent</GridLinesHorColor>
+      <GridLinesVertColor>Transparent</GridLinesVertColor>
+      <InterlacingHorBrush>[10:155:155:155]</InterlacingHorBrush>
+      <InterlacingVertBrush>[10:155:155:155]</InterlacingVertBrush>
+      <LegendBorderColor>Transparent</LegendBorderColor>
+      <LegendBrush>[255:255:255]</LegendBrush>
+      <LegendLabelsColor>140, 140, 140</LegendLabelsColor>
+      <LegendTitleColor>DimGray</LegendTitleColor>
+      <Name>Chart</Name>
+      <SeriesBorderColor>Transparent</SeriesBorderColor>
+      <SeriesLabelsBorderColor>Transparent</SeriesLabelsBorderColor>
+      <SeriesLabelsBrush>Transparent</SeriesLabelsBrush>
+      <SeriesLabelsColor>Black</SeriesLabelsColor>
+      <SeriesLabelsLineColor>140, 140, 140</SeriesLabelsLineColor>
+      <StyleColors>[192:232:255], [181:248:248], [167:213:199], [134:219:222], [62:194:215], [165:204:254], [104:163:255], [92:114:215], [13:119:176]</StyleColors>
+      <TitleFont>Arial,11</TitleFont>
+      <ToolTipBrush>White</ToolTipBrush>
+      <ToolTipTextBrush>Black</ToolTipTextBrush>
+      <TrendLineColor>Transparent</TrendLineColor>
+    </Chart>
+    <Footer1 Ref="30" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <AllowUseBorderSides>False</AllowUseBorderSides>
+      <Border>None;[58:78:94];1;Solid;False;4;[0:0:0]</Border>
+      <Brush>Transparent</Brush>
+      <Conditions isList="true" count="0" />
+      <Font>Segoe UI,9.75</Font>
+      <HorAlignment>Right</HorAlignment>
+      <Name>Footer1</Name>
+      <NegativeTextBrush>[255:0:0]</NegativeTextBrush>
+      <TextBrush>[158:158:158]</TextBrush>
+      <VertAlignment>Center</VertAlignment>
+    </Footer1>
+  </Styles>
+</StiSerializer>

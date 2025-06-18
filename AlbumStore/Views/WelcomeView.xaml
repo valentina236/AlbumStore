@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="AlbumStore.Views.WelcomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlbumStore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1200">
+
+    <Grid>
+        <Border Background="#F8F9FC" CornerRadius="12" Margin="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <TextBlock Text="Добро пожаловать в Музыкальный Магазин" 
+                           FontSize="36" 
+                           FontWeight="Bold" 
+                           Foreground="#6a6ae2" 
+                           HorizontalAlignment="Center"
+                           Margin="20,40,20,20"/>
+
+                <!-- Музыкальное изображение (большой знак нот) -->
+                <Border Grid.Row="1" 
+                        Width="350" 
+                        Height="350" 
+                        Background="#ADADF0"
+                        CornerRadius="200"
+                        HorizontalAlignment="Center">
+                    <TextBlock Text="🎵" 
+                               FontSize="240"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+
+                <!-- Подпись внизу -->
+                <TextBlock Grid.Row="2"
+                           Text="Выберите раздел в меню слева для начала работы"
+                           FontSize="18"
+                           Foreground="#555555"
+                           HorizontalAlignment="Center"
+                           Margin="0,40,0,30"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,482 @@
+﻿<UserControl x:Class="AlbumStore.Views.AlbumView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlbumStore.Views"
+             x:Name="MainAlbumControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Margin="15, 0, 0, 0">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6a6ae2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="8">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border x:Name="shine" CornerRadius="8" Opacity="0">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#40FFFFFF" Offset="0"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#7f7fe8" TargetName="border"/>
+                                <Setter Property="Opacity" Value="0.7" TargetName="shine"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#5a5acd" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Edit Button Style -->
+        <Style x:Key="EditButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#7B8CDE"/>
+        </Style>
+
+        <!-- Delete Button Style -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#E06666"/>
+        </Style>
+
+        <!-- Filter Button Style -->
+        <Style x:Key="FilterButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#FF7C73F1"/>
+        </Style>
+
+        <!-- Album Card Style -->
+        <Style x:Key="AlbumCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E6E6FF"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#E0E0F7" BlurRadius="10" ShadowDepth="0" Opacity="0.15"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F8F7FF"/>
+                    <Setter Property="BorderBrush" Value="#D0D0FF"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#D0D0F7" BlurRadius="15" ShadowDepth="0" Opacity="0.25"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Search TextBox Style -->
+        <Style x:Key="ModernSearchBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#666699"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Альбомы" 
+                       FontSize="28" 
+                       FontWeight="Bold" 
+                       Foreground="#444470"/>
+            <TextBlock Text="Управление музыкальной коллекцией" 
+                       FontSize="14"
+                       Foreground="#8888AA"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Search and Action Buttons -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search Box -->
+            <Border Background="White" 
+            CornerRadius="8" 
+            BorderThickness="1" 
+            BorderBrush="#E9E9FF">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="🔍" 
+                       FontSize="16" 
+                       VerticalAlignment="Center" 
+                       Margin="16,0,8,0" 
+                       Foreground="#9999BB"/>
+                    <TextBox x:Name="SearchBox" 
+                         Grid.Column="1" 
+                         Style="{StaticResource ModernSearchBoxStyle}"
+                         Tag="Поиск альбомов..."
+                         Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Grid.Column="2" 
+                        Content="✕" 
+                        Foreground="#9999BB"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Visibility="Visible"
+                        Name="ClearSearchButton"
+                        Command="{Binding ClearSearchCommand}"                   
+                        Margin="8,0,16,0"/>
+                </Grid>
+            </Border>
+
+            <!-- Action Buttons -->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" 
+                        Style="{StaticResource FilterButtonStyle}"
+                        Command="{Binding ToggleFiltersCommand}" 
+                        Width="110" 
+                        Height="45"
+                        Margin="20,0,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Path Data="M4 4H20V6H14.586L10 10.586V16H14V18H10V22H8V18H4V16H8V10.586L3.414 6H2V4H4ZM16 4H18V6H16V4Z" 
+                            Fill="White" 
+                            Width="16" 
+                            Height="16" 
+                            Margin="0,0,5,0" 
+                            VerticalAlignment="Center"/>
+                        <TextBlock Text="Фильтр" 
+                            FontSize="14" 
+                            VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" 
+                Content="➕ Добавить" 
+                Style="{StaticResource ModernButtonStyle}"
+                Command="{Binding AddAlbumCommand}" 
+                Width="110" Height="45"
+                HorizontalAlignment="Right"
+                Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </Grid>
+        </Grid>
+
+
+        <!-- Album Grid View -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Albums}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ItemWidth="230"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource AlbumCardStyle}" 
+                                MaxWidth="230"
+                                MouseLeftButtonDown="AlbumCard_MouseLeftButtonDown">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Album Cover -->
+                                <Border Grid.Row="0" 
+                                         
+                                        CornerRadius="8" 
+                                        Margin="12,12,12,6">
+                                    <Grid>
+                                        <Image Source="{Binding ImagePath, FallbackValue='/Resources/sneaker_placeholder.png'}" 
+                                               Width="190" 
+                                               Height="210" 
+                                               Stretch="Uniform" 
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Format.FormatName}" 
+                                                 FontSize="13" 
+                                                 Background="#8B83F2"
+                                                 Foreground="White"
+                                                 Padding="6,2"
+                                                 
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Top"
+                                                 Margin="0,8,8,0"/>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Album Info -->
+                                <StackPanel Grid.Row="1" Margin="12,6,12,12">
+                                    <TextBlock Text="{Binding AlbumName}" 
+                                              FontWeight="Bold" 
+                                              FontSize="16" 
+                                              Foreground="#444470"
+                                              TextWrapping="Wrap"
+                                              TextTrimming="CharacterEllipsis"
+                                              MaxHeight="48"/> 
+                                    <TextBlock Text="{Binding ArtistName}" 
+                                              FontSize="15" 
+                                              Foreground="#8888AA"
+                                              Margin="0,4,0,0"
+                                              TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="{Binding UnitPrice, StringFormat={}{0:N2} L}" 
+                                              FontWeight="Bold" 
+                                              FontSize="15" 
+                                              Foreground="#6a6ae2"
+                                              Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Modal Background -->
+        <Grid x:Name="ModalBackground" 
+              Grid.RowSpan="3" 
+              Background="#80000000" 
+              Visibility="Collapsed"
+              MouseLeftButtonDown="CloseModalBackground_Click">
+            <!-- Modal Content -->
+            <Border 
+                    Background="White" 
+                    CornerRadius="12"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MouseLeftButtonDown="ModalContent_MouseLeftButtonDown">
+                <Grid Margin="24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Modal Header -->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" 
+                                   Text="{Binding SelectedAlbum.AlbumName}" 
+                                   FontSize="22" 
+                                   FontWeight="Bold" 
+                                   TextWrapping="Wrap"
+                                   MaxWidth="700"
+                                   MaxHeight="64"
+                                   LineStackingStrategy="MaxHeight"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Left"
+                                   Margin="0"
+                                   Foreground="#444470"/>
+
+                        <Button Grid.Column="1" 
+                                Content="✕" 
+                                FontSize="18"
+                                Width="36" 
+                                Height="36" 
+                                Background="Transparent"
+                                Foreground="#8888AA"
+                                BorderThickness="0"
+                                Click="CloseModalButton_Click"/>
+                    </Grid>
+
+                    <!-- Modal Content -->
+                    <Grid Grid.Row="1" Margin="0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Album Cover -->
+                        <Border Grid.Column="0" 
+                                CornerRadius="8" 
+                                Margin="0,0,16,0">
+                            <Image Source="{Binding SelectedAlbum.ImagePath, FallbackValue='/Resources/sneaker_placeholder.png'}" 
+                                   Width="350" 
+                                   Height="400" 
+                                   Stretch="Uniform" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Album Details -->
+                        <StackPanel Grid.Column="1">
+                            <Grid Margin="30,0,30,12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Row 1 -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" 
+                                           Text="Исполнитель:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,80,0,10"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.ArtistName}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,80,0,10"/>
+
+                                <!-- Row 2 -->
+                                <TextBlock Grid.Row="1" Grid.Column="0" 
+                                           Text="Дата выпуска:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.ReleaseDate, StringFormat=dd.MM.yyyy}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,0,0,10"/>
+
+                                <!-- Row 3 -->
+                                <TextBlock Grid.Row="2" Grid.Column="0" 
+                                           Text="Производитель:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.ManufacturerName}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,0,0,10"/>
+
+                                <!-- Row 4 -->
+                                <TextBlock Grid.Row="3" Grid.Column="0" 
+                                           Text="Формат:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.Format.FormatName}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,0,0,10"/>
+
+                                <!-- Row 5 -->
+                                <TextBlock Grid.Row="4" Grid.Column="0" 
+                                           Text="Жанр:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Grid.Row="4" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.Genre.GenreName}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,0,0,10"/>
+
+                                <!-- Row 6 -->
+                                <TextBlock Grid.Row="5" Grid.Column="0" 
+                                           Text="Тип:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"
+                                           Margin="0,0,0,10"/>
+                                <TextBlock Grid.Row="5" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.Type.TypeName}" 
+                                           Foreground="#444470" 
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Margin="13,0,0,10"/>
+
+                                <!-- Row 7 -->
+                                <TextBlock Grid.Row="6" Grid.Column="0" 
+                                           Text="Цена:" 
+                                           Foreground="#8888AA" 
+                                           FontSize="16"/>
+                                <TextBlock Grid.Row="6" Grid.Column="1" 
+                                           Text="{Binding SelectedAlbum.UnitPrice, StringFormat={}{0:N2} L}" 
+                                           Foreground="#6a6ae2" 
+                                           FontWeight="Bold"
+                                           FontSize="18"
+                                           Margin="13,0,0,0"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Modal Footer -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="✏️ Изменить" 
+                                Style="{StaticResource EditButtonStyle}"
+                                Command="{Binding EditAlbumCommand}"
+                                Click="ActionButton_Click"
+                                CommandParameter="{Binding SelectedAlbum}"
+                                Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Width="100" 
+                                Height="40" />
+                        <Button Content="🗑️ Удалить" 
+                                Style="{StaticResource DeleteButtonStyle}"
+                                Command="{Binding DeleteAlbumCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Width="100" 
+                                Height="40"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
